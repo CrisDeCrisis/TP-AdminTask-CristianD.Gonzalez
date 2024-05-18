@@ -1,0 +1,111 @@
+:root {
+    --principal: #A5C882;
+    --secundario: #D33F49;
+    --blanco: #FFF;
+    --negro: #000;
+    --porDefecto: #E7E7E7;
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    height: 100vh;
+    background-color: var(--porDefecto);
+}
+
+*:first-letter {
+    text-transform: capitalize;
+}
+
+.lista {
+    margin: 25px auto;
+    padding: 25px;
+    background-color: var(--blanco);
+    width: 100%;
+    max-width: 350px;
+}
+
+#fecha {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fechaIzq {
+    display: flex;
+    align-items: center;
+}
+
+#diaNumero {
+    font-size: 50px;
+}
+
+#diaSemana {
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+#diaNumero, #mes, #diaSemana {
+    font-weight: bold;
+}
+
+#mes, #año {
+    margin-left: 7px;
+    font-size: 20px;
+}
+
+form {
+    margin: 20px 0;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: auto 35px auto;
+    grid-column-gap: 15px;
+}
+
+input {
+    border: none;
+    padding-left: 10px;
+    background-color: var(--porDefecto);
+}
+
+input:focus {
+    outline: none;
+}
+
+.añadirNuevaTarea, .ordenarTareas {
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.añadirNuevaTarea {
+    height: 35px;
+    border-radius: 50%;
+    font-size: 18px;
+    background-color: var(--porDefecto);
+}
+
+.ordenarTareas {
+    background-color: var(--secundario);
+    color: var(--blanco);
+}
+
+.tarea {
+    background-color: var(--principal);
+    padding: 15px;
+    margin-top: 15px;
+    color: var(--blanco);
+    cursor: pointer;
+}
+
+.hecho {
+    background-color: var(--secundario);
+    text-decoration: line-through;
+    color: var(--blanco);
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}

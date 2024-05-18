@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/styles/styles.css">
     <title>Administrador de tareas</title>
 </head>
 <body>
-    <header>
+    <main class="lista">
         <article id="fecha">
-            <section id="diaNumero"></section>
-            <div>
-                <section id="mes"></section>
-                <section id="año"></section>
+            <div class="fechaIzq">
+                <section id="diaNumero"></section>
+                <div>
+                    <section id="mes"></section>
+                    <section id="año"></section>
+                </div>
             </div>
             <section id="diaSemana"></section>
         </article>
@@ -21,11 +23,9 @@
             <button type="submit" class="añadirNuevaTarea">+</button>
             <button type="button" class="ordenarTareas" onclick="ordenarTareas()">Ordenar</button>
         </form>
-    </header>
-    <main>
         <article id="listaTareas"></article>
     </main>
-    <footer>
+    <footer class="lista">
         <p>&copy; dev-CristianD.Gonzalez</p>
     </footer>
     <script src="assets/scripts/script.js"></script>
