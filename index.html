@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Administrador de tareas</title>
+</head>
+<body>
+    <header>
+        <article id="fecha">
+            <section id="diaNumero"></section>
+            <div>
+                <section id="mes"></section>
+                <section id="año"></section>
+            </div>
+            <section id="diaSemana"></section>
+        </article>
+        <form onsubmit="agregarNuevaTarea{event}">
+            <input type="text" name="nuevaTarea" autocomplete="off" placeholder="Ingrese una tarea">
+            <button type="submit" class="añadirNuevaTarea">+</button>
+            <button type="button" class="ordenarTareas" onclick="ordenarTareas{}">Ordenar</button>
+        </form>
+    </header>
+    <main>
+        <article id="listaTareas"></article>
+    </main>
+    <footer>
+        <p>&copy; dev-CristianD.Gonzalez</p>
+    </footer>
+    <script src="assets/scripts/script.js"></script>
+</body>
+</html>
