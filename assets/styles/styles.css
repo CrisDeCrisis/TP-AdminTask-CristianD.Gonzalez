@@ -92,6 +92,8 @@ input:focus {
 
 .tarea {
     background-color: var(--principal);
+    display: flex;
+    justify-content: space-between;
     padding: 15px;
     margin-top: 15px;
     color: var(--blanco);
@@ -99,9 +101,22 @@ input:focus {
 }
 
 .hecho {
-    background-color: var(--secundario);
+    background-color: var(--porDefecto);
     text-decoration: line-through;
+    color: var(--negro);
+}
+
+.eliminar {
+    background-color: var(--secundario);
     color: var(--blanco);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.eliminar:hover {
+    background-color: darkred;
 }
 
 footer {

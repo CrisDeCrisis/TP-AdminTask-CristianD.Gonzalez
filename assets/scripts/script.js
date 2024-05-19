@@ -16,10 +16,18 @@ const agregarNuevaTarea = event => {
     event.preventDefault();
     const {value} = event.target.nuevaTarea;
     if (!value) return;
+
     const tarea = document.createElement('section');
     tarea.classList.add('tarea');
     tarea.addEventListener('click', cambiarEstadoTarea)
     tarea.textContent = value;
+
+    const eliminar = document.createElement('button');
+    eliminar.innerHTML = '<i class="fas fa-trash-alt"></i>';
+    eliminar.classList.add('eliminar');
+    eliminar.addEventListener('click', eliminarTarea);
+    tarea.appendChild(eliminar);
+
     listaTareas.prepend(tarea);
     event.target.reset();
 }
@@ -27,6 +35,11 @@ const agregarNuevaTarea = event => {
 const cambiarEstadoTarea = event => {
     event.target.classList.toggle('hecho');
 }
+
+const eliminarTarea = event => {
+    const tarea = event.target.parentElement;
+    listaTareas.removeChild(tarea);
+};
 
 const order = () => {
     const hecho = [];
