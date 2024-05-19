@@ -6,15 +6,15 @@
     --porDefecto: #E7E7E7;
 }
 
+*:first-letter {
+    text-transform: capitalize;
+}
+
 body {
     font-family: sans-serif;
     margin: 0;
     height: 100vh;
     background-color: var(--porDefecto);
-}
-
-*:first-letter {
-    text-transform: capitalize;
 }
 
 .lista {
@@ -106,6 +106,19 @@ input:focus {
     color: var(--negro);
 }
 
+.editar {
+    background-color: var(--principal);
+    color: var(--blanco);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.editar:hover {
+    background-color: darkgreen;
+}
+
 .eliminar {
     background-color: var(--secundario);
     color: var(--blanco);
@@ -117,6 +130,14 @@ input:focus {
 
 .eliminar:hover {
     background-color: darkred;
+}
+
+.inputEdicion {
+    width: calc(100% - 40px);
+    padding: 5px;
+    margin-right: 5px;
+    border: 1px solid var(--negro);
+    border-radius: 5px;
 }
 
 footer {
