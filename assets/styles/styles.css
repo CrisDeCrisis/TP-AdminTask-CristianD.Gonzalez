@@ -102,8 +102,23 @@ input:focus {
 
 .hecho {
     background-color: var(--porDefecto);
-    text-decoration: line-through;
     color: var(--negro);
+}
+.hechoP{
+    text-decoration: line-through;
+}
+
+.tareaP{
+    width: 75%;
+    height: 100%;
+    text-align: start;
+}
+
+.tareasContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
 }
 
 .editar {

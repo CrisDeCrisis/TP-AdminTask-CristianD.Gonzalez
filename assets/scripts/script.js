@@ -3,6 +3,10 @@ const mes = document.getElementById('mes');
 const año = document.getElementById('año');
 const diaSemana = document.getElementById('diaSemana');
 const listaTareas = document.getElementById('listaTareas');
+const form = document.getElementById('form');
+const regex = /^\S+$/;
+
+let tareas = [];
 
 const mostrarFecha = () => {
     const date = new Date();
@@ -12,79 +16,72 @@ const mostrarFecha = () => {
     diaSemana.textContent = date.toLocaleString('es', { weekday: 'long' });
 }
 
-const agregarNuevaTarea = event => {
-    event.preventDefault();
-    const { value } = event.target.nuevaTarea;
-    if (!value) return;
-
-    const tarea = document.createElement('section');
-    tarea.classList.add('tarea');
-    tarea.addEventListener('click', cambiarEstadoTarea);
-    tarea.textContent = value;
-
-    const botonesContainer = document.createElement('div');
-    botonesContainer.style.display = 'flex';
-    botonesContainer.style.gap = '5px';
-
-    const editar = document.createElement('button');
-    editar.innerHTML = '<i class="fas fa-pencil-alt"></i>';
-    editar.classList.add('editar');
-    editar.addEventListener('click', editarTarea);
-
-    const eliminar = document.createElement('button');
-    eliminar.innerHTML = '<i class="fas fa-trash-alt"></i>';
-    eliminar.classList.add('eliminar');
-    eliminar.addEventListener('click', eliminarTarea);
-
-    botonesContainer.appendChild(editar);
-    botonesContainer.appendChild(eliminar);
-    tarea.appendChild(botonesContainer);
-
-    listaTareas.prepend(tarea);
-    event.target.reset();
-}
-
-const editarTarea = event => {
-    event.stopPropagation();
-
-    const tarea = event.target.closest('section');
-    const textoActual = tarea.childNodes[0].textContent;
-
-    const inputEdicion = document.createElement('input');
-    inputEdicion.type = 'text';
-    inputEdicion.value = textoActual;
-    inputEdicion.classList.add('inputEdicion');
-    inputEdicion.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            tarea.childNodes[0].textContent = e.target.value;
-            tarea.removeChild(inputEdicion);
+const editarTarea = (tarea) => {
+    const nuevaTarea = prompt('Ingrese la nueva tarea');
+    if (!regex.test(nuevaTarea)) return alert('Por favor, ingrese un valor válido');
+    if (!nuevaTarea) return;
+    tareas.forEach(t => {
+        if (t.tarea === tarea) {
+            t.tarea = nuevaTarea;
         }
     });
-
-    tarea.replaceChild(inputEdicion, tarea.childNodes[0]);
-    inputEdicion.focus();
-}
-
-const cambiarEstadoTarea = event => {
-    event.target.classList.toggle('hecho');
-}
-
-const eliminarTarea = event => {
-    const tarea = event.target.parentElement;
-    listaTareas.removeChild(tarea);
+    mostrarTareas(tareas);
 };
 
-const order = () => {
-    const hecho = [];
-    const porHacer = [];
-    listaTareas.childNodes.forEach(elemento => {
-        elemento.classList.contains('hecho') ? hecho.push(elemento) : porHacer.push(elemento);
+const eliminarTarea = (tarea) => {
+    const validarEliminar = prompt("Ingrese el nombre de la tarea que quiere eliminar");
+    if (!validarEliminar) return;
+    if (validarEliminar !== tarea) return alert("El nombre de la tarea no coincide");
+    tareas = tareas.filter(t => t.tarea !== tarea);
+    mostrarTareas(tareas);
+};
+
+
+const mostrarTareas = (tareas) => {
+    listaTareas.innerHTML = '';
+    tareas.forEach(tarea => {
+        listaTareas.innerHTML += `
+        <section class="tarea tareasContainer ${tarea.hecho ? 'hecho' : 'porHacer'}" >
+            <p onClick='cambiarEstadoTarea("${tarea.tarea}")' class=" tareaP ${tarea.hecho ? 'hechoP' : ''}"">${tarea.tarea}</p>
+            <div>
+                <button class="editar" onClick='editarTarea("${tarea.tarea}")'><i class="fas fa-pencil-alt"></i></button>
+                <button class="eliminar" onClick='eliminarTarea("${tarea.tarea}")'><i class="fas fa-trash-alt"></i></button>
+            </div>    
+        </section>
+        `;
+
     });
-    return [...porHacer, ...hecho];
+};
+
+const agregarNuevaTarea = event => {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    const inputTarea = data.get('nuevaTarea')
+    if (!regex.test(inputTarea)) return alert('Por favor, ingrese un valor válido');
+    tareas.push({ tarea: inputTarea, hecho: false });
+    mostrarTareas(tareas);
+    console.log(tareas);
+    form.reset()
+};
+
+form.addEventListener('submit', agregarNuevaTarea )
+
+const cambiarEstadoTarea = (tarea) => {
+    tareas.forEach(t => {
+        if (t.tarea === tarea) {
+            t.hecho = !t.hecho;
+        }
+    });
+    mostrarTareas(tareas);
+    ordenarTareas();
 }
 
+
 const ordenarTareas = () => {
-    order().forEach(elemento => listaTareas.appendChild(elemento));
+    tareas.sort((a, b) => a.hecho - b.hecho);
+    mostrarTareas(tareas);
 }
+
+
 
 mostrarFecha();

@@ -21,8 +21,8 @@
         </article>
     </header>
     <main class="lista">
-        <form onsubmit="agregarNuevaTarea(event)">
-            <input type="text" name="nuevaTarea" autocomplete="off" placeholder="Ingrese una tarea">
+        <form id="form">
+            <input type="text" name="nuevaTarea" id="tarea" autocomplete="off" placeholder="Ingrese una tarea">
             <button type="submit" class="añadirNuevaTarea">+</button>
             <button type="button" class="ordenarTareas" onclick="ordenarTareas()">Ordenar</button>
         </form>
