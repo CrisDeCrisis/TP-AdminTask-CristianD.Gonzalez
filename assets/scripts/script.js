@@ -4,7 +4,8 @@ const año = document.getElementById('año');
 const diaSemana = document.getElementById('diaSemana');
 const listaTareas = document.getElementById('listaTareas');
 const form = document.getElementById('form');
-const regex = /^\S+$/;
+const regex = /^\S(.*\S)?$/;
+
 
 let tareas = [];
 
@@ -36,7 +37,6 @@ const eliminarTarea = (tarea) => {
     mostrarTareas(tareas);
 };
 
-
 const mostrarTareas = (tareas) => {
     listaTareas.innerHTML = '';
     tareas.forEach(tarea => {
@@ -49,7 +49,6 @@ const mostrarTareas = (tareas) => {
             </div>    
         </section>
         `;
-
     });
 };
 
@@ -76,12 +75,9 @@ const cambiarEstadoTarea = (tarea) => {
     ordenarTareas();
 }
 
-
 const ordenarTareas = () => {
     tareas.sort((a, b) => a.hecho - b.hecho);
     mostrarTareas(tareas);
 }
-
-
 
 mostrarFecha();
