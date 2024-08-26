@@ -1,14 +1,16 @@
+// Obtener referencias a los elementos del DOM
 const diaNumero = document.getElementById('diaNumero');
 const mes = document.getElementById('mes');
 const año = document.getElementById('año');
 const diaSemana = document.getElementById('diaSemana');
 const listaTareas = document.getElementById('listaTareas');
 const form = document.getElementById('form');
-const regex = /^\S(.*\S)?$/;
+const regex = /^\S(.*\S)?$/; // Expresión regular para validar entradas no vacías
 
-
+// Inicializar la lista de tareas
 let tareas = [];
 
+// Función para mostrar la fecha actual en el DOM
 const mostrarFecha = () => {
     const date = new Date();
     diaNumero.textContent = date.toLocaleString('es', { day: 'numeric' });
@@ -17,6 +19,7 @@ const mostrarFecha = () => {
     diaSemana.textContent = date.toLocaleString('es', { weekday: 'long' });
 }
 
+// Función para editar una tarea existente
 const editarTarea = (tarea) => {
     const nuevaTarea = prompt('Ingrese la nueva tarea');
     if (!regex.test(nuevaTarea)) return alert('Por favor, ingrese un valor válido');
@@ -29,6 +32,7 @@ const editarTarea = (tarea) => {
     mostrarTareas(tareas);
 };
 
+// Función para eliminar una tarea existente
 const eliminarTarea = (tarea) => {
     const validarEliminar = prompt("Ingrese el nombre de la tarea que quiere eliminar");
     if (!validarEliminar) return;
@@ -37,6 +41,7 @@ const eliminarTarea = (tarea) => {
     mostrarTareas(tareas);
 };
 
+// Función para mostrar las tareas en el DOM
 const mostrarTareas = (tareas) => {
     listaTareas.innerHTML = '';
     tareas.forEach(tarea => {
@@ -52,6 +57,7 @@ const mostrarTareas = (tareas) => {
     });
 };
 
+// Función para agregar una nueva tarea
 const agregarNuevaTarea = event => {
     event.preventDefault();
     const data = new FormData(event.target);
@@ -63,8 +69,10 @@ const agregarNuevaTarea = event => {
     form.reset()
 };
 
-form.addEventListener('submit', agregarNuevaTarea )
+// Agregar un evento al formulario para agregar nuevas tareas
+form.addEventListener('submit', agregarNuevaTarea)
 
+// Función para cambiar el estado de una tarea (hecho/por hacer)
 const cambiarEstadoTarea = (tarea) => {
     tareas.forEach(t => {
         if (t.tarea === tarea) {
@@ -75,9 +83,11 @@ const cambiarEstadoTarea = (tarea) => {
     ordenarTareas();
 }
 
+// Función para ordenar las tareas, mostrando primero las no hechas
 const ordenarTareas = () => {
     tareas.sort((a, b) => a.hecho - b.hecho);
     mostrarTareas(tareas);
 }
 
+// Mostrar la fecha actual al cargar la página
 mostrarFecha();

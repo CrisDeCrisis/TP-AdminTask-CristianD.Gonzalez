@@ -1,36 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+    <!-- Metadatos del documento -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Enlace a la hoja de estilos principal -->
     <link rel="stylesheet" href="assets/styles/styles.css">
+    <!-- Enlace a la hoja de estilos de Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Administrador de tareas</title>
 </head>
+
 <body>
+    <!-- Encabezado que muestra la fecha -->
     <header class="lista">
         <article id="fecha">
             <div class="fechaIzq">
+                <!-- Sección para el número del día -->
                 <section id="diaNumero"></section>
                 <div>
+                    <!-- Sección para el mes y el año -->
                     <section id="mes"></section>
                     <section id="año"></section>
                 </div>
             </div>
+            <!-- Sección para el día de la semana -->
             <section id="diaSemana"></section>
         </article>
     </header>
+    <!-- Contenido principal -->
     <main class="lista">
+        <!-- Formulario para añadir nuevas tareas -->
         <form id="form">
+            <!-- Campo de entrada para la nueva tarea -->
             <input type="text" name="nuevaTarea" id="tarea" autocomplete="off" placeholder="Ingrese una tarea">
+            <!-- Botón para añadir la nueva tarea -->
             <button type="submit" class="añadirNuevaTarea">+</button>
+            <!-- Botón para ordenar las tareas -->
             <button type="button" class="ordenarTareas" onclick="ordenarTareas()">Ordenar</button>
         </form>
+        <!-- Contenedor para la lista de tareas -->
         <article id="listaTareas"></article>
     </main>
+    <!-- Pie de página -->
     <footer class="lista">
         <p>&copy; dev-CristianD.Gonzalez</p>
     </footer>
+    <!-- Enlace al archivo JavaScript principal -->
     <script src="assets/scripts/script.js"></script>
 </body>
+
 </html>
